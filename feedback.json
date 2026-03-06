@@ -1,0 +1,20 @@
+{
+  "reviews": [
+    {
+      "run_id": "eval-0-with_skill",
+      "feedback": "현재 있는 기존 디자인을 바꾸되, 내부에 있는 메뉴 구성은 건드리면 안돼. PRD 파일을 참고해서 메뉴 구성과 문구 등 기획의도와 디자인이 어우러질 수 있도록 고려해야 해",
+      "timestamp": "2026-03-06T01:09:16.729Z"
+    },
+    {
+      "run_id": "eval-1-with_skill",
+      "feedback": "디자인에 도움이 된다고 생각하면 div 구성을 바꾸는 것도 고려해서 작업해봐",
+      "timestamp": "2026-03-06T01:09:16.729Z"
+    },
+    {
+      "run_id": "eval-2-with_skill",
+      "feedback": "웹접근성 고려하기! 특히 색상 명도",
+      "timestamp": "2026-03-06T01:09:16.729Z"
+    }
+  ],
+  "status": "complete"
+}

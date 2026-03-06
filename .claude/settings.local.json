@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\\\\tailwindcss\\\\package.json\")",
+      "Bash(ls \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\\\\@tailwindcss\")",
+      "Bash(ls \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\")",
+      "Bash(ls \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\\\\tailwindcss\")",
+      "Bash(node -e \"const pkg = require\\(''C:/Users/hm__l/OneDrive/Desktop/ax-homepage/AX 강조 홈페이지 디자인 \\(복사\\)/node_modules/tailwindcss/package.json''\\); console.log\\(JSON.stringify\\({exports: Object.keys\\(pkg.exports || {}\\), main: pkg.main}, null, 2\\)\\)\")",
+      "Bash(node -e \"const tw = require\\(''C:/Users/hm__l/OneDrive/Desktop/ax-homepage/AX 강조 홈페이지 디자인 \\(복사\\)/node_modules/tailwindcss''\\); console.log\\(typeof tw, Object.keys\\(tw\\)\\)\")",
+      "Bash(ls \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\\\\tailwindcss\\\\dist\")",
+      "Bash(head -5 \"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\\\\node_modules\\\\tailwindcss\\\\dist\\\\lib.js\")",
+      "Bash(cmd /c \"rmdir /s /q \"\"c:\\\\Users\\\\hm__l\\\\OneDrive\\\\Desktop\\\\ax-homepage\\\\AX 강조 홈페이지 디자인 \\(복사\\)\"\"\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-0\\\\with_skill\\\\outputs\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-0\\\\without_skill\\\\outputs\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-1\\\\with_skill\\\\outputs\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-1\\\\without_skill\\\\outputs\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-2\\\\with_skill\\\\outputs\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\\\\eval-2\\\\without_skill\\\\outputs\")",
+      "WebSearch",
+      "WebFetch(domain:www.awwwards.com)",
+      "Bash(python eval-viewer/generate_review.py \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\iteration-1\" --skill-name \"design-research-apply\" --static \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\review.html\")",
+      "Bash(where python)",
+      "Bash(\"C:\\\\Users\\\\hm__l\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python.exe\" --version)",
+      "Bash(where node)",
+      "Bash(node --version)",
+      "Bash(ls /c/Python*)",
+      "Read(//c/Users/hm__l/**)",
+      "Bash(node \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\generate_review.js\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply-workspace\\\\review.html\")",
+      "Bash(powershell -Command \"Compress-Archive -Path ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply\\\\*'' -DestinationPath ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.skill'' -Force\")",
+      "Bash(powershell -Command \"Compress-Archive -Path ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply\\\\*'' -DestinationPath ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.zip'' -Force && Rename-Item ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.zip'' ''design-research-apply.skill''\")",
+      "Bash(powershell -Command \"Compress-Archive -Path ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply\\\\*'' -DestinationPath ''C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.zip'' -Force\")",
+      "Bash(mv \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.zip\" \"C:\\\\Users\\\\hm__l\\\\.claude\\\\skills\\\\design-research-apply.skill\")"
+    ]
+  }
+}

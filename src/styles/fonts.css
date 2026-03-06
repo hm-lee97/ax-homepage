@@ -1,0 +1,19 @@
+/* Geist covers Latin/English, Pretendard covers Korean */
+/* Both are loaded via <link> in index.html */
+
+:root {
+  --font-heading: 'Geist', 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+  --font-body: 'Pretendard Variable', 'Pretendard', 'Geist', -apple-system, sans-serif;
+}
+
+/* Latin characters → Geist, Korean characters → Pretendard (automatic fallback) */
+body {
+  font-family: 'Geist', 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headlines use Geist for weight/tracking control */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Geist', 'Pretendard Variable', 'Pretendard', sans-serif;
+}
