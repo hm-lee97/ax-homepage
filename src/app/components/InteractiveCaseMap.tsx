@@ -58,10 +58,10 @@ export function InteractiveCaseMap() {
             <div className="absolute w-full h-[1px] bg-[#EEEEEE]" />
             <div className="absolute h-full w-[1px] bg-[#EEEEEE]" />
           </div>
-          <div className="absolute bottom-4 w-full text-center text-[11px] font-medium text-[#CCC] uppercase tracking-widest">
+          <div className="absolute bottom-4 w-full text-center text-[12px] font-medium text-[#CCC] uppercase tracking-widest">
             Experience ←——————→ Platform
           </div>
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 text-[11px] font-medium text-[#CCC] uppercase tracking-widest whitespace-nowrap">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 -rotate-90 text-[12px] font-medium text-[#CCC] uppercase tracking-widest whitespace-nowrap">
             Strategy | Execution
           </div>
 
@@ -95,9 +95,9 @@ export function InteractiveCaseMap() {
                       className="absolute z-50 bottom-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-[210px] bg-[#1A1A1A] rounded-[10px] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.25)] pointer-events-none"
                     >
                       <div className="text-[13px] font-semibold text-white mb-2">{node.client}</div>
-                      <div className="text-[11px] text-[#999] mb-0.5">Problem: <span className="text-[#CCC]">{node.prob}</span></div>
-                      <div className="text-[11px] text-[#999] mb-0.5">Approach: <span className="text-[#CCC]">{node.app}</span></div>
-                      <div className="text-[11px] text-[#999] mt-2 pt-2 border-t border-[rgba(255,255,255,0.07)]">
+                      <div className="text-[12px] text-[#999] mb-0.5">Problem: <span className="text-[#CCC]">{node.prob}</span></div>
+                      <div className="text-[12px] text-[#999] mb-0.5">Approach: <span className="text-[#CCC]">{node.app}</span></div>
+                      <div className="text-[12px] text-[#999] mt-2 pt-2 border-t border-[rgba(255,255,255,0.07)]">
                         Result: <span className="text-[#9932CC] font-semibold">{node.res}</span>
                       </div>
                     </motion.div>

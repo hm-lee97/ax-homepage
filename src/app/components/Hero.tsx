@@ -2,113 +2,254 @@ import React from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
+const NODES = [
+  { angle: -90, label: "Strategy",   sub: "Vision · Roadmap" },
+  { angle:   0, label: "Experience", sub: "Journey · UX" },
+  { angle:  90, label: "Platform",   sub: "Cloud · Stack" },
+  { angle: 180, label: "Growth",     sub: "Analytics · Ops" },
+];
+
+function OrbitalDiagram() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.88, rotate: -8 }}
+      animate={{ opacity: 1, scale: 1,    rotate: 0  }}
+      transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full max-w-[460px] aspect-square relative"
+    >
+      {/* Concentric ring 1 */}
+      <div className="absolute inset-0 rounded-full border border-[rgba(153,50,204,0.07)]" />
+      {/* Concentric ring 2 */}
+      <div className="absolute inset-[11%] rounded-full border border-[rgba(153,50,204,0.11)]" />
+      {/* Concentric ring 3 */}
+      <div className="absolute inset-[23%] rounded-full border border-[rgba(153,50,204,0.18)]" />
+
+      {/* Outer orbit dot — slow clockwise */}
+      <div
+        className="absolute inset-[3%] rounded-full"
+        style={{ animation: "orbit-cw 22s linear infinite" }}
+      >
+        <div className="absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#9932CC]"
+          style={{ boxShadow: "0 0 14px rgba(153,50,204,0.95), 0 0 32px rgba(153,50,204,0.45)" }} />
+      </div>
+
+      {/* Mid orbit dot — medium, counter-clockwise */}
+      <div
+        className="absolute inset-[14%] rounded-full"
+        style={{ animation: "orbit-ccw 14s linear infinite" }}
+      >
+        <div className="absolute -top-[6px] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#FFD700]"
+          style={{ boxShadow: "0 0 12px rgba(255,215,0,0.9), 0 0 24px rgba(255,215,0,0.4)" }} />
+      </div>
+
+      {/* Inner orbit dot — fast clockwise */}
+      <div
+        className="absolute inset-[26%] rounded-full"
+        style={{ animation: "orbit-cw 8s linear infinite" }}
+      >
+        <div className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#C860F0]"
+          style={{ boxShadow: "0 0 10px rgba(200,96,240,0.9)" }} />
+      </div>
+
+      {/* Dashed cross-hair lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 460 460">
+        <line x1="230" y1="190" x2="230" y2="62"  stroke="#9932CC" strokeOpacity="0.13" strokeWidth="1" strokeDasharray="3 6" />
+        <line x1="270" y1="230" x2="398" y2="230" stroke="#9932CC" strokeOpacity="0.13" strokeWidth="1" strokeDasharray="3 6" />
+        <line x1="230" y1="270" x2="230" y2="398" stroke="#9932CC" strokeOpacity="0.13" strokeWidth="1" strokeDasharray="3 6" />
+        <line x1="190" y1="230" x2="62"  y2="230" stroke="#9932CC" strokeOpacity="0.13" strokeWidth="1" strokeDasharray="3 6" />
+      </svg>
+
+      {/* 4 node labels */}
+      {NODES.map((node, i) => {
+        const rad = (node.angle * Math.PI) / 180;
+        const r = 47;
+        const x = 50 + r * Math.cos(rad);
+        const y = 50 + r * Math.sin(rad);
+        return (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.55 + i * 0.1, duration: 0.5 }}
+            className="absolute w-[108px] h-[56px] bg-[#0D0D14] border border-[rgba(255,255,255,0.06)] rounded-xl flex flex-col items-center justify-center hover:border-[rgba(153,50,204,0.45)] hover:bg-[rgba(153,50,204,0.07)] transition-all duration-300 cursor-pointer"
+            style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
+          >
+            <span className="text-[11px] font-semibold text-[#D0CDE8]"
+              style={{ fontFamily: "'Geist', sans-serif" }}>{node.label}</span>
+            <span className="text-[11px] text-[#8888A8] mt-0.5">{node.sub}</span>
+          </motion.div>
+        );
+      })}
+
+      {/* Center AX */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[82px] h-[82px] rounded-full bg-[#9932CC] flex items-center justify-center z-30"
+        style={{
+          boxShadow:
+            "0 0 0 1px rgba(153,50,204,0.35), 0 0 40px rgba(153,50,204,0.55), 0 0 80px rgba(153,50,204,0.22)",
+          animation: "pulse-glow 4s ease-in-out infinite",
+        }}
+      >
+        <span className="text-white font-black text-[15px] tracking-[0.06em]"
+          style={{ fontFamily: "'Geist', sans-serif" }}>AX</span>
+      </div>
+    </motion.div>
+  );
+}
+
 export function Hero({ onNavigate }: { onNavigate?: (idx: number) => void }) {
   const stats = [
     { value: "18년", label: "컨설팅 경험" },
     { value: "200+", label: "성공 사례" },
-    { value: "98%", label: "고객 만족도" },
+    { value: "98%",  label: "고객 만족도" },
   ];
 
   return (
-    <section className="relative w-full h-screen bg-[#0A0A0A] overflow-hidden flex items-center pt-[72px]">
-      <div
-        className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(153,50,204,0.07) 0%, transparent 65%)' }}
-      />
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
-          backgroundRepeat: 'repeat',
-          backgroundSize: '128px 128px',
-        }}
-      />
+    <section className="relative w-full md:h-screen bg-[#060608] overflow-x-hidden md:overflow-hidden flex items-center pt-[72px]">
 
-      <div className="mx-auto px-8 md:px-14 max-w-[1400px] w-full grid md:grid-cols-12 gap-10 relative z-10">
+      {/* Grid lines */}
+      <div className="absolute inset-0 pointer-events-none grid-bg" />
+
+      {/* Noise grain */}
+      <div className="absolute inset-0 pointer-events-none noise-overlay opacity-[0.038]" />
+
+      {/* Purple radial — top-right */}
+      <div className="absolute -top-48 -right-48 w-[680px] h-[680px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(153,50,204,0.14) 0%, transparent 65%)" }} />
+
+      {/* Purple radial — bottom-left */}
+      <div className="absolute -bottom-64 -left-32 w-[540px] h-[540px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(153,50,204,0.07) 0%, transparent 65%)" }} />
+
+      {/* Giant ghost "AX" */}
+      <div
+        className="absolute right-[-2vw] bottom-[-2vw] pointer-events-none select-none leading-none"
+        style={{
+          fontSize: "42vw",
+          fontWeight: 900,
+          fontFamily: "'Geist', sans-serif",
+          color: "rgba(255,255,255,0.016)",
+          letterSpacing: "-0.07em",
+        }}
+      >
+        AX
+      </div>
+
+      <div className="mx-auto px-6 md:px-14 max-w-[1400px] w-full grid md:grid-cols-12 gap-8 relative z-10 py-10 md:py-0">
 
         {/* Left */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="md:col-span-7 flex flex-col justify-center"
-        >
-          <div className="text-[11px] font-semibold text-[#C060E0] tracking-[0.22em] uppercase mb-6">
-            Total Experience Consulting
-          </div>
+        <div className="md:col-span-7 flex flex-col justify-center">
 
-          <h1 className="text-[56px] md:text-[80px] font-bold text-white leading-[1.18] tracking-[-0.04em] max-w-[820px]">
-            Wylie AX Center —<br />
-            고객 경험의 모든<br />
-            순간을 최적화하다
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <div className="w-7 h-[1px] bg-[#9932CC]" />
+            <span className="text-[12px] font-semibold text-[#9932CC] tracking-[0.30em] uppercase"
+              style={{ fontFamily: "'Geist', sans-serif" }}>
+              Total Experience Consulting
+            </span>
+          </motion.div>
 
-          <p className="text-[18px] font-medium text-[#9932CC] mt-7">
-            세상에 없던 새로운 판을 만듭니다
-          </p>
-          <p className="text-[15px] text-[#8A8A9A] mt-2 max-w-[480px] leading-[1.65]">
-            데이터 기반 전략에서 사용자 중심 설계까지, Total eXperience 컨설팅
-          </p>
+          <motion.h1
+            initial={{ opacity: 0, y: 44 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
+            className="font-black text-white leading-[1.04] tracking-[-0.05em] max-w-[780px]"
+            style={{
+              fontSize: "clamp(52px, 7.2vw, 96px)",
+              fontFamily: "'Pretendard Variable', 'Pretendard', sans-serif",
+            }}
+          >
+            고객 경험의<br />
+            <span style={{
+              backgroundImage: "linear-gradient(120deg, #9932CC 0%, #C878F0 50%, #FFD700 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              모든 순간을
+            </span>
+            <br />최적화하다
+          </motion.h1>
 
-          <div className="mt-10">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.26 }}
+            className="text-[15px] text-[#8A8A9E] mt-7 max-w-[420px] leading-[1.72]"
+          >
+            데이터 기반 전략에서 사용자 중심 설계까지,<br />Total eXperience 컨설팅
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.38 }}
+            className="mt-10 flex items-center gap-4 flex-wrap"
+          >
             <button
               onClick={() => onNavigate?.(3)}
-              className="h-[52px] px-8 bg-[#9932CC] text-white text-[15px] font-semibold rounded-lg hover:bg-[#B44DE0] transition-colors duration-200 flex items-center gap-2"
+              className="group relative h-[50px] px-8 text-white text-[13px] font-semibold rounded-full flex items-center gap-2.5 overflow-hidden transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              style={{
+                background: "#9932CC",
+                boxShadow: "0 0 28px rgba(153,50,204,0.5), 0 0 60px rgba(153,50,204,0.2)",
+              }}
             >
-              AX 솔루션 보기 <ArrowRight className="w-4 h-4" />
+              <span className="relative z-10 flex items-center gap-2.5"
+                style={{ fontFamily: "'Geist', sans-serif" }}>
+                AX 솔루션 보기
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+              </span>
+              <div className="absolute inset-0 bg-[#B044E0] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
-          </div>
 
-          {/* Trust Strip */}
-          <div className="mt-14 flex items-center gap-8 md:gap-12">
+            <button
+              onClick={() => onNavigate?.(4)}
+              className="h-[50px] px-8 border border-[rgba(255,255,255,0.09)] text-[#8A8AA4] text-[13px] font-medium rounded-full hover:border-[rgba(153,50,204,0.45)] hover:text-[#C0C0D8] transition-all duration-300"
+            >
+              성공 사례
+            </button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.52 }}
+            className="mt-14 flex items-stretch gap-8 md:gap-12"
+          >
             {stats.map((stat, idx) => (
               <React.Fragment key={idx}>
-                {idx > 0 && <div className="w-[1px] h-[40px] bg-[#2A2A2A]" />}
+                {idx > 0 && (
+                  <div className="w-[1px] bg-[rgba(255,255,255,0.06)] self-stretch" />
+                )}
                 <div className="flex flex-col">
-                  <span className="text-[36px] font-bold text-[#FFD700] leading-none mb-1">{stat.value}</span>
-                  <span className="text-[12px] text-[#8A8A9A]">{stat.label}</span>
+                  <span
+                    className="font-black text-[#FFD700] leading-none tracking-[-0.03em]"
+                    style={{
+                      fontSize: "clamp(28px, 2.8vw, 42px)",
+                      fontFamily: "'Geist', sans-serif",
+                      textShadow: "0 0 20px rgba(255,215,0,0.35)",
+                    }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span className="text-[12px] text-[#7070A0] mt-1.5 tracking-[0.14em] uppercase font-medium"
+                    style={{ fontFamily: "'Geist', sans-serif" }}>
+                    {stat.label}
+                  </span>
                 </div>
               </React.Fragment>
             ))}
-          </div>
-        </motion.div>
-
-        {/* Right — AX Architecture Diagram */}
-        <div className="md:col-span-5 hidden md:flex items-center justify-center relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full max-w-[420px] aspect-square relative"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] bg-[#9932CC] rounded-full flex items-center justify-center z-20 shadow-[0_0_32px_rgba(153,50,204,0.4)]">
-              <span className="text-white font-bold text-[12px] tracking-wide">AX Core</span>
-            </div>
-            <svg className="absolute inset-0 w-full h-full z-10" viewBox="0 0 420 420">
-              <line x1="210" y1="175" x2="210" y2="70"  stroke="#9932CC" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="245" y1="210" x2="350" y2="210" stroke="#9932CC" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="210" y1="245" x2="210" y2="350" stroke="#9932CC" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="4 4" />
-              <line x1="175" y1="210" x2="70"  y2="210" stroke="#9932CC" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="4 4" />
-            </svg>
-            {[
-              { top: "5%",  left: "50%", title: "Strategy",   sub: "Vision · Roadmap" },
-              { top: "50%", left: "95%", title: "Experience", sub: "Journey · UX" },
-              { top: "95%", left: "50%", title: "Platform",   sub: "Cloud · Integration" },
-              { top: "50%", left: "5%",  title: "Growth",     sub: "Analytics · Ops" },
-            ].map((node, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-                className="absolute w-[124px] h-[68px] bg-[#111] border border-[rgba(255,255,255,0.07)] rounded-xl flex flex-col items-center justify-center hover:border-[rgba(153,50,204,0.35)] transition-colors duration-200 cursor-pointer z-30"
-                style={{ top: node.top, left: node.left, transform: 'translate(-50%, -50%)' }}
-              >
-                <span className="text-[12px] font-semibold text-[#E8E4DE]">{node.title}</span>
-                <span className="text-[10px] text-[#8A8A9A] mt-0.5">{node.sub}</span>
-              </motion.div>
-            ))}
           </motion.div>
+        </div>
+
+        {/* Right — Orbital diagram */}
+        <div className="md:col-span-5 hidden md:flex items-center justify-center relative">
+          <OrbitalDiagram />
         </div>
 
       </div>

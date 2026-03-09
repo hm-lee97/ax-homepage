@@ -20,7 +20,7 @@ export function AXOperatingModel() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="text-[11px] font-semibold text-[#9932CC] tracking-[0.22em] uppercase mb-4"
+            className="text-[12px] font-semibold text-[#9932CC] tracking-[0.22em] uppercase mb-4"
           >
             AX Operating Model
           </motion.div>

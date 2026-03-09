@@ -56,12 +56,19 @@ function AnimatedCounter({ value, total, isDark }: { value: number; total: numbe
 export default function App() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
-  const isDarkSlide = [0, 3].includes(current);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const isDarkSlide = [0, 3, 5].includes(current);
   const total = SLIDE_LABELS.length;
   const isAnimating = useRef(false);
   const lastTime = useRef(0);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
+
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
 
   const goTo = useCallback((idx: number) => {
     if (isAnimating.current) return;
@@ -76,6 +83,7 @@ export default function App() {
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
   useEffect(() => {
+    if (isMobile) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
       const now = Date.now();
@@ -85,7 +93,7 @@ export default function App() {
     };
     window.addEventListener('wheel', onWheel, { passive: false });
     return () => window.removeEventListener('wheel', onWheel);
-  }, [next, prev]);
+  }, [next, prev, isMobile]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -97,13 +105,13 @@ export default function App() {
   }, [next, prev]);
 
   useEffect(() => {
+    if (isMobile) return;
     const onTouchStart = (e: TouchEvent) => {
       touchStartX.current = e.touches[0].clientX;
       touchStartY.current = e.touches[0].clientY;
     };
     const onTouchEnd = (e: TouchEvent) => {
       const startX = touchStartX.current;
-      // Ignore swipes from screen edges — conflicts with iOS back/forward gesture
       if (startX < 30 || startX > window.innerWidth - 30) return;
       const dx = startX - e.changedTouches[0].clientX;
       const dy = touchStartY.current - e.changedTouches[0].clientY;
@@ -117,8 +125,30 @@ export default function App() {
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchend', onTouchEnd);
     };
-  }, [next, prev]);
+  }, [next, prev, isMobile]);
 
+  /* ── Mobile: normal vertical scroll ── */
+  if (isMobile) {
+    const scrollTo = (idx: number) => {
+      document.getElementById(`section-${idx}`)?.scrollIntoView({ behavior: 'smooth' });
+    };
+    return (
+      <div className="w-full bg-[#0A0A0A]">
+        <Header currentSlide={-1} onNavigate={scrollTo} />
+        <div id="section-0"><Hero onNavigate={scrollTo} /></div>
+        <div id="section-1"><Problem /></div>
+        <div id="section-2"><AXFramework /></div>
+        <div id="section-3"><Solutions /></div>
+        <div id="section-4"><CaseStudies /></div>
+        <div id="section-5" className="flex flex-col">
+          <WhyWylie />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  /* ── Desktop: fullpage slide ── */
   const SLIDES = [
     <Hero key="hero" onNavigate={goTo} />,
     <Problem key="problem" />,
@@ -135,7 +165,6 @@ export default function App() {
     <div className="w-screen h-screen overflow-hidden bg-[#0A0A0A] relative">
       <Header currentSlide={current} onNavigate={goTo} />
 
-      {/* Slides */}
       <AnimatePresence mode="sync" custom={direction}>
         <motion.div
           key={current}
@@ -194,7 +223,7 @@ export default function App() {
         />
       </div>
 
-      {/* Bottom right: prev / counter / next — all in one unit */}
+      {/* Bottom right: prev / counter / next */}
       <div className="fixed bottom-5 right-8 md:right-14 z-[150] flex items-center gap-3">
         <motion.button
           onClick={prev}

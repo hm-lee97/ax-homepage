@@ -60,10 +60,10 @@ export function Insights() {
                 <img src={item.img} alt={item.cat} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
-                <div className="text-[10px] font-semibold text-[#9932CC] tracking-[0.15em] uppercase mb-2">{item.cat}</div>
+                <div className="text-[12px] font-semibold text-[#9932CC] tracking-[0.15em] uppercase mb-2">{item.cat}</div>
                 <h3 className="text-[18px] font-semibold text-[#1A1A1A] leading-[1.35] mb-2 whitespace-pre-line">{item.title}</h3>
                 <p className="text-[13px] text-[#555] leading-[1.6] mb-4 flex-grow">{item.summary}</p>
-                <span className="text-[12px] font-medium text-[#9932CC] flex items-center gap-1">
+                <span className="text-[13px] font-medium text-[#9932CC] flex items-center gap-1">
                   Read insight <ArrowRight size={12} />
                 </span>
               </div>
