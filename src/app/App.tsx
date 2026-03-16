@@ -15,17 +15,19 @@ const SLIDE_LABELS = [
 
 const THROTTLE_MS = 900;
 
+const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
+
 const slideVariants = {
   enter: (dir: number) => ({
     x: dir > 0 ? '100vw' : '-100vw',
   }),
-  center: {
+  center: (_dir: number) => ({
     x: 0,
-    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
-  },
+    transition: { duration: 0.8, ease: EASE },
+  }),
   exit: (dir: number) => ({
     x: dir > 0 ? '-100vw' : '100vw',
-    transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+    transition: { duration: 0.8, ease: EASE },
   }),
 };
 
