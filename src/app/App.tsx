@@ -6,11 +6,12 @@ import { Problem } from './components/Problem';
 import { AXFramework } from './components/AXFramework';
 import { Solutions } from './components/Solutions';
 import { CaseStudies } from './components/CaseStudies';
+import { Insights } from './components/Insights';
 import { WhyWylie } from './components/WhyWylie';
 import { Footer } from './components/Footer';
 
 const SLIDE_LABELS = [
-  'Home', 'Problem', 'AX Framework', 'Solutions', 'Case Studies', 'Why Wylie',
+  'Home', 'Problem', 'AX Framework', 'Solutions', 'Case Studies', 'Insights', 'Why Wylie',
 ];
 
 const THROTTLE_MS = 900;
@@ -59,7 +60,7 @@ export default function App() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
-  const isDarkSlide = [0, 3, 5].includes(current);
+  const isDarkSlide = [0, 3, 6].includes(current);
   const total = SLIDE_LABELS.length;
   const isAnimating = useRef(false);
   const lastTime = useRef(0);
@@ -142,7 +143,8 @@ export default function App() {
         <div id="section-2"><AXFramework /></div>
         <div id="section-3"><Solutions /></div>
         <div id="section-4"><CaseStudies /></div>
-        <div id="section-5" className="flex flex-col">
+        <div id="section-5"><Insights /></div>
+        <div id="section-6" className="flex flex-col">
           <WhyWylie />
           <Footer />
         </div>
@@ -157,6 +159,7 @@ export default function App() {
     <AXFramework key="framework" />,
     <Solutions key="solutions" />,
     <CaseStudies key="cases" />,
+    <Insights key="insights" />,
     <div key="last" className="w-screen h-screen flex flex-col overflow-hidden">
       <WhyWylie />
       <Footer />
