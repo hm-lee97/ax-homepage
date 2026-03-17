@@ -8,3 +8,5 @@ dist/
 .claude/
 dist_0309.zip
 feedback.json
+.agents/
+skills-lock.json
