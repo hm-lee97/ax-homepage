@@ -193,7 +193,7 @@ export default function App() {
             title={label}
             className="group flex items-center gap-2 justify-end"
           >
-            <span className="text-[11px] font-medium text-white bg-[#1A1A1A] px-2.5 py-1 rounded-md opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150 whitespace-nowrap pointer-events-none shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+            <span className="text-[11px] font-medium text-white bg-[#1A1A1A] px-2.5 py-1 rounded-md opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-150 ease-out whitespace-nowrap pointer-events-none shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
               {label}
             </span>
             <div className="relative flex items-center justify-center w-4 h-4">
@@ -211,7 +211,7 @@ export default function App() {
                   : { width: 6, height: 6, backgroundColor: isDarkSlide ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)' }
                 }
                 whileHover={{ backgroundColor: isDarkSlide ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.5)' }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.15, ease: 'easeOut' }}
                 className="block rounded-full"
               />
             </div>
@@ -233,8 +233,7 @@ export default function App() {
         <motion.button
           onClick={prev}
           animate={{ opacity: current > 0 ? 1 : 0.2, pointerEvents: current > 0 ? 'auto' : 'none' }}
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.97 }}
           className={isDarkSlide ? 'text-[rgba(255,255,255,0.35)] hover:text-white transition-colors' : 'text-[rgba(0,0,0,0.25)] hover:text-[#1A1A1A] transition-colors'}
         >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -247,8 +246,7 @@ export default function App() {
         <motion.button
           onClick={next}
           animate={{ opacity: current < total - 1 ? 1 : 0.2, pointerEvents: current < total - 1 ? 'auto' : 'none' }}
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.97 }}
           className={isDarkSlide ? 'text-[rgba(255,255,255,0.35)] hover:text-white transition-colors' : 'text-[rgba(0,0,0,0.25)] hover:text-[#1A1A1A] transition-colors'}
         >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
